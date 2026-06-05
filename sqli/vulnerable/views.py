@@ -12,10 +12,12 @@ def login(request):
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
 
-        query = f"SELECT * FROM vulnerable_user WHERE username = '{username}' AND password = '{password}'"
+        # query = f"SELECT * FROM vulnerable_user WHERE username = '{username}' AND password = '{password}'"
 
         with connection.cursor() as cursor:
-            cursor.execute(query)
+            cursor.execute(
+                "SELECT * FROM vulnerable_user WHERE username = %s AND password = %s", [username,password]
+            )
             row = cursor.fetchone()
         
         if row:
