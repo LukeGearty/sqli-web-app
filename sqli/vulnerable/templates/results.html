@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h2>Search Users</h2>
+    <form method="GET">
+        <input type="text" name="q" value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <h4>Query executed:</h4>
+    <pre>{{ query }}</pre>
+
+    <h4>Results:</h4>
+    {% if rows %}
+        <table border="1">
+            <tr><th>Username</th><th>Email</th></tr>
+            {% for row in rows %}
+                <tr>
+                    <td>{{ row.0 }}</td>
+                    <td>{{ row.1 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+
+    <br><a href="/vulnerable/login/">Go to Login</a>
+</body>
+</html>

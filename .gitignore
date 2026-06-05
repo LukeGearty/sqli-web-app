@@ -1,0 +1,4 @@
+/env
+/sqli/db.sqlite3
+/sqli/*/migrations
+/sqli/*/__pycache__
